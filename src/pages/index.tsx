@@ -1,7 +1,7 @@
-import { clearFix } from 'polished';
+import ChallengeBox from '../components/ChallengeBox';
 
-import CompletedChallenges from '../components/CompletedChallenges.tsx';
-import CountDown from '../components/CountDown.tsx';
+import CompletedChallenges from '../components/CompletedChallenges';
+import CountDown from '../components/CountDown';
 import ExperienceBar from '../components/ExperienceBar';
 import Profile from '../components/Profile';
 import { Container } from './styles';
@@ -15,10 +15,10 @@ export default function Home() {
           <Profile />
           <CompletedChallenges />
           <CountDown />
-
-          
         </article>
-        <section></section>
+        <section>
+          <ChallengeBox />
+        </section>
       </section>
     </Container>
   );

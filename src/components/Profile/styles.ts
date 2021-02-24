@@ -3,8 +3,7 @@ import { colors } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 10rem;
+  align-items: center;  
   
   img {
     width: 5.5rem;
