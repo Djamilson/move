@@ -2,10 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { clearTimeout } from 'timers';
 import { Container, Button, HasFinishedButton } from './styles';
 
+import { challengesData } from '../../hooks/challengesContext';
 let countDownTimeOut: NodeJS.Timeout;
 
 const CountDown: React.FC = () => {
-  const [time, setTimes] = useState(25 * 60);
+  const { startNewChallenge } = challengesData();
+
+  const [time, setTimes] = useState(0.1 * 60);
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
@@ -33,6 +36,7 @@ const CountDown: React.FC = () => {
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
+      startNewChallenge();
     }
   }, [isActive, time, setHasFinished]);
 

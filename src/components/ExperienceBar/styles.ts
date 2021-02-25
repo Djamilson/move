@@ -1,40 +1,45 @@
 import styled from 'styled-components';
 import { colors } from '../../styles';
 
+interface IPropsFrom {
+  percentFromNexLevel: number;
+}
+
 export const Container = styled.header`
   display: flex;
-  height: 4px;
-  border-radius: 4px;
-  background: ${colors.gray_line};
-
   justify-content: space-between;
   align-items: center;
-  width: 87%;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
 
   span {
     font-size: 1rem;
-    margin-left: -3.5rem;
-    margin-top: -0.4rem;
+    // margin-top: -0.2rem;
   }
   div {
-    width: 60%;
+    width: 65vw;
     height: 4px;
     border-radius: 4px;
-    background: ${colors.green_};
-    right: 0;
-    margin: 0;
-    margin-left: -17rem;
-
+    display: flex;
     position: relative;
-    span {
-      margin-top: 2.5rem;
-      margin-left: 14.3rem;
-      position: absolute;
-      width: 50px;
-    }
+    background: ${colors.gray_line};
   }
-  strong {
-    font-size: 1rem;
-    transform: translateX(120%);
-  }
+`;
+
+export const PercentFromNexLevel = styled.span<IPropsFrom>`
+  width: ${(props) => props.percentFromNexLevel}rem;
+  //width:20rem;
+  height: 4px;
+  border-radius: 4px;
+  background: ${colors.green_};
+  transform: translateX(4rem);
+  margin-left: -4rem;
+`;
+
+export const PercentToNexLevel = styled.p`
+  margin-top: 1.5rem;
+  position: relative;
+  width: 3rem;
+  transform: translateX(3.5rem);
 `;

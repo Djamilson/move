@@ -1,11 +1,14 @@
 import React from 'react';
+import { challengesData } from '../../hooks/challengesContext';
 import { Container } from './styles';
 
 const CompletedChallenges: React.FC = () => {
+  const { challengesCompleted } = challengesData();
+
   return (
     <Container>
       <strong>Desafios completos</strong>
-      <span>5</span>
+      <span>{challengesCompleted}</span>
     </Container>
   );
 };

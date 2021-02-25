@@ -36,35 +36,6 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "consistent-return": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "no-empty-function": "off",
-    "no-console": "off",
-    "no-undef": "off",
-    "no-param-reassign": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-use-before-define": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off",
-    "no-unused-expressions": "off",
-    "react/jsx-one-expression-per-line": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "no-unused-vars": 0,
-
-    "no-restricted-syntax": "off",
-    "@typescript-eslint/ban-types": "off",
-    "jsx-a11y/control-has-associated-label": "off",
-
-    "jsx-a11y/label-has-associated-control": ["error", { "assert": "either" }],
-    "no-empty": "off",
-    "import/no-duplicates": "off",
-    "@typescript-eslint/camelcase": "off",
-    "camelcase": "off",
     "react/jsx-filename-extension": [
       "error",
       { "extensions": [".js", ".tsx"] }
@@ -96,5 +67,5 @@
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ]
-  },
+  }
 }
