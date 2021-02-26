@@ -4,12 +4,12 @@ import CompletedChallenges from '../components/CompletedChallenges';
 import CountDown from '../components/CountDown';
 import ExperienceBar from '../components/ExperienceBar';
 import Profile from '../components/Profile';
-import { Container } from './styles';
+import { Container } from '../components/Home/styles';
 
 import { CountDownsProvider } from '../hooks/countDownContext';
 import { challengesData } from '../hooks/challengesContext';
 import { ChallengesProvider } from '../hooks/challengesContext';
-
+import MyHome from '../components/Home';
 interface IHomeProps {
   level: number;
   currentExperience: number;
@@ -21,28 +21,11 @@ export default function Home(props: IHomeProps) {
   const { level, currentExperience, challengesCompleted } = props;
 
   return (
-    <ChallengesProvider
+    <MyHome
       level={level}
       currentExperience={currentExperience}
       challengesCompleted={challengesCompleted}
-    >
-      <Container>
-        <ExperienceBar />
-        <CountDownsProvider>
-          <section>
-            <article>
-              <Profile />
-              <CompletedChallenges />
-              <CountDown />
-            </article>
-            <section>
-              <ChallengeBox />
-            </section>
-          </section>
-        </CountDownsProvider>
-        ;
-      </Container>
-    </ChallengesProvider>
+    />
   );
 }
 
