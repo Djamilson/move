@@ -1,7 +1,10 @@
 import React from 'react';
+import { challengesData } from '../../hooks/challengesContext';
 import { Container } from './styles';
 
 const Profile: React.FC = () => {
+  const { level } = challengesData();
+
   return (
     <Container>
       <img src="https://github.com/djamilson.png" alt="Djamilson Alves" />
@@ -9,7 +12,7 @@ const Profile: React.FC = () => {
         <strong>Djamilson Alves</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
-          Level 1
+          Level {level}
         </p>
       </div>
     </Container>

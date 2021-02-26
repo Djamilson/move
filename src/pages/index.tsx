@@ -6,20 +6,25 @@ import ExperienceBar from '../components/ExperienceBar';
 import Profile from '../components/Profile';
 import { Container } from './styles';
 
+import { CountDownsProvider } from '../hooks/countDownContext';
+
 export default function Home() {
   return (
     <Container>
       <ExperienceBar />
-      <section>
-        <article>
-          <Profile />
-          <CompletedChallenges />
-          <CountDown />
-        </article>
+      <CountDownsProvider>   
         <section>
-          <ChallengeBox />
+          <article>
+            <Profile />
+            <CompletedChallenges />
+            <CountDown />
+          </article>
+          <section>
+            <ChallengeBox />
+          </section>
         </section>
-      </section>
+      </CountDownsProvider>
+      ;
     </Container>
   );
 }

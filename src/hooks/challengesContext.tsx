@@ -3,6 +3,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import challenges from '../../challenges.json';
@@ -21,6 +22,7 @@ interface ChallengesContextData {
   levelUp: () => void;
   startNewChallenge: () => void;
   resetChallenge: () => void;
+  completeChallenge: () => void;
   experienceToNextLevel: number;
 }
 
@@ -37,8 +39,12 @@ const ChallengesProvider: React.FC<IChallengesProviderProps> = ({
 }) => {
   const [level, setLevel] = useState<number>(1);
   //31rem equivalente a 100%
-  const [currentExperience, setCurrentExperience] = useState<number>(31);
+  const [currentExperience, setCurrentExperience] = useState<number>(0);
   const [challengesCompleted, setChallengesCompleted] = useState<number>(0);
+
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
 
   const levelUp = useCallback(() => {
     setLevel(level + 1);
@@ -53,11 +59,41 @@ const ChallengesProvider: React.FC<IChallengesProviderProps> = ({
     const challenge = challenges[randonChallengeIndex];
 
     setActiveChallenge(challenge);
+
+    new Audio('/notification.mp3').play();
+
+    if (Notification.permission === 'granted') {
+      new Notification('Novo desafio', {
+        body: `Valendo ${challenge.amount}xp!`,
+      });
+    }
   }, [setLevel, level]);
 
-  const sstartNewChallenge = useCallback(() => {
-    // setActiveChallenge(challenge);
-  }, [setLevel, level, setActiveChallenge]);
+  const completeChallenge = useCallback(() => {
+    if (!activeChallenge) {
+      return;
+    }
+
+    const { amount } = activeChallenge;
+
+    let finalExperience = currentExperience + amount;
+
+    if (finalExperience >= experienceToNextLevel) {
+      finalExperience = finalExperience - experienceToNextLevel;
+
+      levelUp();
+    }
+
+    setCurrentExperience(finalExperience);
+    setActiveChallenge(null);
+    setChallengesCompleted(challengesCompleted + 1);
+  }, [
+    activeChallenge,
+    setActiveChallenge,
+    setChallengesCompleted,
+    setCurrentExperience,
+    levelUp,
+  ]);
 
   const resetChallenge = useCallback(() => {
     setActiveChallenge(null);
@@ -73,6 +109,7 @@ const ChallengesProvider: React.FC<IChallengesProviderProps> = ({
         startNewChallenge,
         activeChallenge,
         resetChallenge,
+        completeChallenge,
         experienceToNextLevel,
       }}
     >

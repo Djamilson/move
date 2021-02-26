@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { challengesData } from '../../hooks/challengesContext';
+import { countDownsData } from '../../hooks/countDownContext';
 import {
   Container,
   ChallengeBoxInit,
@@ -9,7 +10,22 @@ import {
 } from './styles';
 
 const ChallengeBox: React.FC = () => {
-  const { activeChallenge, resetChallenge } = challengesData();
+  const {
+    activeChallenge,
+    resetChallenge,
+    completeChallenge,
+  } = challengesData();
+
+  const { resetCountDown } = countDownsData();
+  const handleChallengeSucceeded = useCallback(() => {
+    completeChallenge();
+    resetCountDown();
+  }, []);
+
+  const handleChallengeFailed = useCallback(() => {
+    resetChallenge();
+    resetCountDown();
+  }, [resetChallenge, resetCountDown]);
 
   return (
     <Container>
@@ -25,12 +41,15 @@ const ChallengeBox: React.FC = () => {
           <footer>
             <ChallengeFailledButton
               type="button"
-              onClick={() => resetChallenge()}
+              onClick={handleChallengeFailed}
             >
               Falhei
             </ChallengeFailledButton>
 
-            <ChallengeSucceededButton type="button" onClick={() => {}}>
+            <ChallengeSucceededButton
+              type="button"
+              onClick={handleChallengeSucceeded}
+            >
               Completei
             </ChallengeSucceededButton>
           </footer>
