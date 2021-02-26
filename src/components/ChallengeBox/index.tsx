@@ -20,7 +20,7 @@ const ChallengeBox: React.FC = () => {
   const handleChallengeSucceeded = useCallback(() => {
     completeChallenge();
     resetCountDown();
-  }, []);
+  }, [completeChallenge, resetCountDown]);
 
   const handleChallengeFailed = useCallback(() => {
     resetChallenge();

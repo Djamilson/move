@@ -68,7 +68,7 @@ const CountDownsProvider: React.FC<ICountDownsProviderProps> = ({
       setIsActive(false);
       startNewChallenge();
     }
-  }, [isActive, time, setHasFinished]);
+  }, [isActive, time]);
 
   return (
     <CountDownsContext.Provider

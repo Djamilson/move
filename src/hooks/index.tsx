@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { ChallengesProvider } from './challengesContext';
-
 const AppProvider: React.FC = ({ children }) => {
-  return <ChallengesProvider>{children}</ChallengesProvider>;
+  return <>{children}</>;
 };
 export default AppProvider;
